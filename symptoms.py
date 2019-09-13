@@ -1,8 +1,9 @@
 import json
 import pprint
 import pymongo
+import secrets
 
-client = pymongo.MongoClient("mongodb+srv://textmd_read:textmd_read@cluster-tpkrt.mongodb.net/test?retryWrites=true")
+client = pymongo.MongoClient(secrets.MONGODB_CONNECTION_STRING)
 db = client["textmd"]
 bodycol = db["body"]
 sympcol = db["symptoms"]

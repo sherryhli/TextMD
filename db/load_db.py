@@ -4,8 +4,9 @@
 
 import json
 import pymongo
+import db.db_connection_string as secrets
 
-client = pymongo.MongoClient("mongodb+srv://textmd:textmd@cluster-tpkrt.mongodb.net/test?retryWrites=true")
+client = pymongo.MongoClient(secrets.MONGODB_CONNECTION_STRING)
 db = client["textmd"]
 
 def load_db(col, file):

@@ -1,5 +1,6 @@
 import requests
 import json
+import secrets
 
 # Custom exception class for errors thrown by API call
 class ApiError(Exception):
@@ -21,7 +22,7 @@ class doc_recommendation:
 #   address parameter should be in form of "200+University+Avenue+W,+Waterloo,+ON"
 def get_geocode(address):
     api_url = "https://maps.googleapis.com/maps/api/geocode/json"
-    api_key = "AIzaSyAwgNrQxJcURAcWavGIjscRigXHey1M7EY"
+    api_key = secrets.GOOGLE_API_KEY
     response = requests.get(api_url + "?address=" + address + "&key=" + api_key)
     if response.status_code != 200:
         raise ApiError("An error with status code {} occurred" .format(response.status_code))
@@ -37,7 +38,7 @@ def get_geocode(address):
 # Returns array of objects containing doctor name, opening hours, rating, and address
 def get_nearby_doctors(keyword, geocode):
     api_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
-    api_key = "AIzaSyAwgNrQxJcURAcWavGIjscRigXHey1M7EY"
+    api_key = secrets.GOOGLE_API_KEY
     response = requests.get(api_url + "?key=" + api_key + "&location=" + str(geocode[0]) + "," + str(geocode[1]) + "&radius=50000&type=doctor&keyword=" + keyword)
     if response.status_code != 200:
         raise ApiError("An error with status code {} occurred" .format(response.status_code))

@@ -4,19 +4,19 @@ from symptoms import get_locations, get_sublocations, get_symptoms, get_symptom_
 from diagnosis_parser import get_issue_names, get_issue_accuracy, get_suggested_specialists
 from doctor_recommendation_provider import get_geocode, get_nearby_doctors
 from diagnosis_provider import get_diagnosis_json
+import secrets
 
 # The session object makes use of a secret key.
-SECRET_KEY = "a secret key"
+SECRET_KEY = secrets.SESSION_SECRET_KEY
 app = Flask(__name__)
 app.config.from_object(__name__)
 
 # Try adding your own number to this list!
-patients = {
-    "+14165581768": ["Leslie Xin", 0, "", "", "location", "sublocation",[]],
-    "+14158675310": ["Finn Smith", 0, "", "", "location", "sublocation",[]],
-    "+14158675311": ["Chewy White", 0, "", "", "location", "sublocation",[]],
-    "+14166299630": ["Sherry", 0, "", "", "location", "sublocation",[]],
-}
+patients = {}
+patients[secrets.PHONE_NUMBER_1] = ["Leslie Xin", 0, "", "", "location", "sublocation",[]]
+patients[secrets.PHONE_NUMBER_2] = ["Finn Smith", 0, "", "", "location", "sublocation",[]]
+patients[secrets.PHONE_NUMBER_3] = ["Chewy White", 0, "", "", "location", "sublocation",[]]
+patients[secrets.PHONE_NUMBER_4] = ["Sherry", 0, "", "", "location", "sublocation",[]]
 
 '''
 class Address():

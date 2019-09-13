@@ -13,3 +13,6 @@ dist/
 build/
 *.egg-info/
 
+# Secrets
+db/db_connection_string.py
+secrets.py
